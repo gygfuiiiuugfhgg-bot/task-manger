@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "./supabase";
+// import Sidebar from "./Sidebar.jsx";
 
 function Register() {
   const [password, setPassword] = useState("");
@@ -9,6 +10,7 @@ function Register() {
   const [emailMessage, setEmailMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const navigate = useNavigate();
   async function handelsign(e) {
     e.preventDefault();
@@ -26,11 +28,20 @@ function Register() {
       }, 2000);
     }
   }
+    function toggleDark() {
+    setIsDark(!isDark);
+    document.body.classList.toggle("dark");
+  }
+
   return(
+    <div className="div-dark">
+      <button title={isDark ? "الوضع اليلي" : "الوضع النهاري"} className="dark-btn" onClick={toggleDark}>
+  <i className={isDark ? "ti ti-sun" : "ti ti-moon"}></i>
+</button>
   <div className="auth-container">
     <div className="auth-card">
-      <div className="auth-logo">✅ مهامي</div>
-      <h2>انشاء حساب</h2>
+      <div className="auth-logo"><i className="ti ti-checklist"></i> مهامي</div>
+      <h2 className="auth-title">انشاء حساب</h2>
       {successMessage && <p className="success-message">{successMessage}</p>}
       <div className="input-group">
         <input
@@ -47,7 +58,7 @@ function Register() {
       
       <div className="input-group">
         <input
-          type="password"
+              type={showPassword ? "text" : "password"}
           value={password}
           placeholder=" "
           onChange={(e) => setPassword(e.target.value)}
@@ -63,6 +74,8 @@ function Register() {
       </p>
      </div> 
   </div>
+    </div>
+
   )
 }
 

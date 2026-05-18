@@ -9,11 +9,15 @@ function Login() {
   const [passwordMessage, setPasswordMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
     if (error) {
       if (error.message.includes("Invalid")) {
         setEmailMessage("الايميل او الباسورد غلط ❌");
@@ -25,35 +29,70 @@ function Login() {
       setTimeout(() => navigate("/Tasks"), 2000);
     }
   }
-
+  function toggleDark() {
+    setIsDark(!isDark);
+    document.body.classList.toggle("dark");
+  }
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-logo">✅ مهامي</div>
-        <h2>تسجيل الدخول</h2>
+    <div className="div-dark">
+      <button title={isDark ? "الوضع اليلي" : "الوضع النهاري"} className="dark-btn" onClick={toggleDark}>
+        <i className={isDark ? "ti ti-sun" : "ti ti-moon"}></i>
+      </button>
+      <div className="auth-container">
+        <div className="auth-card">
+          <div className="auth-logo">
+            <i className="ti ti-checklist"></i> مهامي
+          </div>
+          <h2 className="auth-title">تسجيل الدخول</h2>
 
-        {successMessage && <p className="success-message">{successMessage}</p>}
+          {successMessage && (
+            <p className="success-message">{successMessage}</p>
+          )}
 
-        <div className="input-group">
-          <input type="email" placeholder=" " value={email}
-            onChange={(e) => { setEmail(e.target.value); setEmailMessage("") }} />
-          <label>البريد الالكتروني</label>
+          <div className="input-group">
+            <input
+              type="email"
+              placeholder=" "
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setEmailMessage("");
+              }}
+            />
+            <label>البريد الالكتروني</label>
+          </div>
+          {emailMessage && (
+            <p className="error-message">
+              <i className="ti ti-alert-circle"></i> {emailMessage}
+            </p>
+          )}
+
+          <div className="input-group">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder=" "
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setPasswordMessage("");
+              }}
+            />
+            <label>كلمة السر</label>
+            <i
+              className={showPassword ? "ti ti-eye-off" : "ti ti-eye"}
+              onClick={() => setShowPassword(!showPassword)}
+            ></i>
+          </div>
+          {passwordMessage && (
+            <p className="error-message">
+              <i className="ti ti-alert-circle"></i> {passwordMessage}
+            </p>
+          )}
+          <button onClick={handleLogin}>تسجيل الدخول</button>
+          <p className="auth-link">
+            مش عندك حساب؟ <Link to="/Register">انشئ حساب</Link>
+          </p>
         </div>
-        {emailMessage && <p className="error-message"><i className="ti ti-alert-circle"></i> {emailMessage}</p>}
-
-        <div className="input-group">
-          <input type={showPassword ? "text" : "password"} placeholder=" " value={password}
-            onChange={(e) => { setPassword(e.target.value); setPasswordMessage("") }} />
-          <label>كلمة السر</label>
-          <i className={showPassword ? "ti ti-eye-off" : "ti ti-eye"}
-            onClick={() => setShowPassword(!showPassword)}></i>
-        </div>
-        {passwordMessage && <p className="error-message"><i className="ti ti-alert-circle"></i> {passwordMessage}</p>}
-
-        <button onClick={handleLogin}>تسجيل الدخول</button>
-        <p className="auth-link">
-          مش عندك حساب؟ <Link to="/">انشئ حساب</Link>
-        </p>
       </div>
     </div>
   );

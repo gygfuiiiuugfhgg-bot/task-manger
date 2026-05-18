@@ -7,7 +7,6 @@ function Sidebar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
   const [isDark, setIsDark] = useState(false);
-
   async function handleLogout() {
     await supabase.auth.signOut();
     navigate("/");
@@ -21,8 +20,8 @@ function Sidebar() {
   return (
     <div  className={isOpen ? "sidebar" : "sidebar closed"}>
       <div className="sidebar-header">
-        {isOpen && <h2 className="sidebar-logo">✅ مهامي</h2>}
-        <button  className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen && <h2 className="sidebar-logo"><i className="ti ti-checklist"></i> مهامي</h2>}
+        <button title="القائمه"  className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
           <i className="ti ti-layout-sidebar-right"></i>
         </button>
       </div>
@@ -42,9 +41,9 @@ function Sidebar() {
       <div className="nav-divider"></div>
 
       <div className="dark-toggle" onClick={toggleDark}>
-        <i className={isDark ? "ti ti-sun" : "ti ti-moon"}></i>
-        {isOpen && <span className="nav-label">{isDark ? "الوضع النهاري" : "الوضع الليلي"}</span>}
-        {isOpen && <button className={isDark ? "toggle on" : "toggle"}></button>}
+        <i  title={isDark ? "الوضع اليلي" : "الوضع النهاري"} className={isDark ? "ti ti-sun" : "ti ti-moon"}></i>
+        {isOpen && <span  className="nav-label">{isDark ? "الوضع النهاري" : "الوضع الليلي"}</span>}
+        {isOpen && <button  title={isDark ? "الوضع اليلي" : "الوضع النهاري"} className={isDark ? "toggle on" : "toggle"}></button>}
       </div>
 
       <div title="تسجيل الخروج" className="nav-item logout" onClick={handleLogout}>

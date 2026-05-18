@@ -1,3 +1,4 @@
+import Landing from "./Landing.jsx"
 import Register from "./Register.jsx";
 import Login from "./Login.jsx";
 import Tasks from "./Tasks.jsx";
@@ -9,7 +10,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Register />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Tasks" element={<Tasks />} />
         <Route path="/Rewards" element={<Rewards />} />

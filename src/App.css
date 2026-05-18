@@ -118,7 +118,7 @@ body {
   gap: 12px;
   padding: 14px 16px;
   cursor: pointer;
-  color: rgba(255,255,255,0.7);
+  color: #ffffffb3;
   font-size: 14px;
   white-space: nowrap;
 }
@@ -126,6 +126,109 @@ body {
 .dark-toggle i {
   font-size: 20px;
   flex-shrink: 0;
+}
+/* dark mode */
+body.dark {
+  background: #0F172A;
+  color: #E2E8F0;
+}
+
+body.dark .main-content {
+  background: #0F172A;
+}
+
+body.dark .sidebar {
+  background: #1E3A5F;
+}
+
+body.dark .task-card,
+body.dark .task-form,
+body.dark .auth-card,
+body.dark .feature,
+body.dark .reward-popup {
+  background: #1E293B;
+  color: #E2E8F0;
+}
+
+body.dark .task-name,
+body.dark .page-title {
+  color: #E2E8F0;
+}
+
+body.dark .search,
+body.dark .task-form input,
+body.dark .task-form select {
+  background: #1E293B;
+  color: #E2E8F0;
+  border-color: #334155;
+}
+
+body.dark .filter {
+  background: #1E293B;
+  color: #94A3B8;
+  border-color: #334155;
+}
+
+body.dark .task-tag {
+  background: #1E3A5F;
+  color: #93C5FD;
+}
+body.dark .auth-container {
+  background: #1E3A5F;
+}
+body.dark .input-group input {
+  background-color: #0F172A;
+  border: 2px solid #0F172A;
+  color: #2563EB;
+}
+body.dark .input-group label {
+   position: absolute;
+  right: 12px;
+  top: 14px;
+  color: #2563EB;
+  font-size: 14px;
+  pointer-events: none;
+  background: #0F172A;
+  padding: 0 4px;
+  transition: 0.3s;
+}
+body.dark .input-group input:focus {
+  border-color: #2563EB;
+  color: #2563EB;
+}
+body.dark .div-dark {
+  background: #1E3A5F;
+}
+body.dark .landing {
+  background: #1E3A5F;
+}
+body.dark .auth-title {
+  color: #2563EB;
+}
+.dark-btn {
+  position: fixed;
+  top: 16px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2563EB;
+  font-size: 24px;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-btn:hover {
+  background: rgba(37,99,235,0.1);
+  transform: none;
+}
+body.dark .title-Reward {
+  font-size: 22px;
+  font-weight: bold;
+  color: #4d79fc;
 }
 
 /* Toggle */
@@ -163,6 +266,9 @@ body {
 }
 
 /* Auth */
+.div-dark {
+  background: #F8FAFF;
+}
 .auth-container {
   display: flex;
   justify-content: center;
@@ -270,11 +376,37 @@ button {
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 button:hover {
   background: #1d4ed8;
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(2px) scale(0.95);
+}
+/* btn-edit */
+.btn-edit {
+  background: none;
+  border: none;
+  color: #2563EB;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+}
+
+.btn-edit:hover {
+  background: none;
+}
+.btn-cancel {
+  background: none;
+  border: 2px solid #fe1919;
+  color: #fe1919;
+}
+.btn-cancel:hover {
+  background: #fe1919;
+  color: #ffff;
 }
 
 /* Messages */
@@ -521,4 +653,112 @@ button:hover {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+/* landing */
+.landing {
+  min-height: 100vh;
+  background: #F8FAFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  direction: rtl;
+}
+
+.landing-logo {
+  font-size: 64px;
+  color: #2563EB;
+  margin-bottom: 16px;
+}
+
+.landing-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #1E293B;
+  margin-bottom: 12px;
+}
+
+.landing-title span {
+  color: #2563EB;
+}
+
+.landing-desc {
+  font-size: 16px;
+  color: #64748B;
+  text-align: center;
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.feature {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+}
+
+.feature i {
+  font-size: 32px;
+  color: #2563EB;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.feature h3 {
+  font-size: 15px;
+  color: #1E293B;
+  margin-bottom: 6px;
+}
+
+.feature p {
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+.landing-btn {
+  background: #2563EB;
+  color: white;
+  border: none;
+  padding: 16px 48px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.2s;
+}
+
+.landing-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.login-link {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #94A3B8;
+}
+
+.login-link span {
+  color: #2563EB;
+  cursor: pointer;
+  font-weight: bold;
+}
+.auth-logo i {
+  font-size: 32px;
+  vertical-align: middle;
 }
