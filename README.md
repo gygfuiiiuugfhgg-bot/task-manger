@@ -16,4 +16,4 @@ A task management app built with React and supabase
 - npm install
 - npm run dev
 ## 🔗 Live Demo
-[Click Here](https://task-manger-one-olive.vercel.app)
+[Click Here](https://task-manger-git-main-abdo-ali-s-projects.vercel.app/)
